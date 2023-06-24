@@ -4,7 +4,7 @@ import Login from './Login';
 import Signup from './Signup';
 import Room from './Room';
 import io from "socket.io-client"
-import { BrowserRouter as Router, Route, Routes,  BrowserRouter, Link } from 'react-router-dom';
+import {  Route, Routes,  BrowserRouter, Link } from 'react-router-dom';
 import Chat from './Chat';
 
 export const socket = io.connect("http://localhost:4000")
