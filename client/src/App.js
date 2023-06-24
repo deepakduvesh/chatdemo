@@ -1,38 +1,50 @@
 import './App.css';
-import Chat from './Chat';
+import Demo from './Demo';
+import Login from './Login';
+import Signup from './Signup';
+import Room from './Room';
 import io from "socket.io-client"
-import {useEffect,useState} from "react";
-  
-const socket = io.connect("http://localhost:4000")
-function App() {
-    const [username,setusername] = useState("");
-    const [room,setroom] = useState("");
-    const [showchat,setshowchat] = useState(false);
- 
-    const joinroom = ()=>{
-      if(username!=="" && room!==""){
-        socket.emit("join_room",room) 
-        setshowchat(true);  
-      }  
-    }  
-  return ( <div className="App">
-    {!showchat?(
-      <div className="joinChatContainer">
-    <h3>join a chat</h3>
-    <input type="text" placeholder='name' 
-     onChange={(event)=>{setusername(event.target.value)}}/>
-    <input type="text" placeholder='roomId'
-     onChange={(event)=>{setroom(event.target.value)}} />
-    <button onClick={joinroom}>join a room</button>
+import { BrowserRouter as Router, Route, Routes,  BrowserRouter, Link } from 'react-router-dom';
+import Chat from './Chat';
+
+export const socket = io.connect("http://localhost:4000")
+
+function HomePage() {
+  return (
+    <div className="App">
+      <img src="/logo192.png" alt="Chat App Logo" className="logo" />
+      <h1>Welcome To My Chat App</h1>
+      <p>Join the conversation and connect with people around the world!</p>
+      <div className="link-container">
+        <Link to="/login" className="link">Login here</Link>
+      </div>
+      <div className="link-container">
+        <Link to="/signup" className="link">Signup here</Link>
+      </div>
     </div>
-    ):(
+  );
+}
 
-     <Chat socket={socket} username={username} room={room} />
-    )}
 
-  </div>);
 
+function App() {   
+  return ( <div className="App">
+    
+<BrowserRouter>
+  <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route exact path="/signup" element={<Signup />} />
+        <Route exact path="/success"  element={<Demo/>} />
+        <Route exact path="/login"  element={<Login/>} />
+        <Route exact path="/room"  element={<Room/>} />
+        <Route exact path="/chat"  element={<Chat/>} />
+  </Routes>
+</BrowserRouter>
+
+  </div>
+  );
+  
 }  
  
 export default App; 
- 
+
