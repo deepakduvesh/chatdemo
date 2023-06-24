@@ -12,19 +12,20 @@ export const socket = io.connect("http://localhost:4000")
 function HomePage() {
   return (
     <div className="App">
-      <span>
+      <img src="/logo192.png" alt="Chat App Logo" className="logo" />
       <h1>Welcome To My Chat App</h1>
-      <div>
-        <Link to = "/login">login here</Link>
+      <p>Join the conversation and connect with people around the world!</p>
+      <div className="link-container">
+        <Link to="/login" className="link">Login here</Link>
       </div>
-      <div>
-      <Link to = "/signup">signup here</Link>
+      <div className="link-container">
+        <Link to="/signup" className="link">Signup here</Link>
       </div>
-      </span>
-      
     </div>
   );
 }
+
+
 
 function App() {   
   return ( <div className="App">

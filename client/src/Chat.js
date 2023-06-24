@@ -13,6 +13,8 @@ function Chat() {
 
     const parsedroom = JSON.parse(roomid);
     var room = parsedroom.room;
+
+
   }
 
   
@@ -39,6 +41,7 @@ const chatBodyRef = useRef(null);
 
 // Add this useEffect hook
 useEffect(() => {
+  if(storedData)
   chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
 }, [msglist]);
 
